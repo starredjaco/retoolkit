@@ -1,4 +1,4 @@
-; v2.0.6
+; v2.1.0
 ; https://github.com/hfiref0x/WinObjEx64
 
 [Components]
@@ -9,4 +9,4 @@ Source: "{#MySrcDir}\systeminformation\winobjex64\*"; DestDir: "{app}\systeminfo
 
 [Icons]
 Name: "{group}\{#MyAppName}\WinObjEx64"; Filename: "{app}\systeminformation\winobjex64\WinObjEx64.exe"; WorkingDir: "{app}\systeminformation\winobjex64"; Components: "systeminformation\winobjex64"
-Name: "{app}\sendto+\sendto\Utilities\WinObjEx64"; Filename: "{app}\systeminformation\winobjex64\WinObjEx64.exe"; WorkingDir: "{app}\systeminformation\winobjex64"; Components: "systeminformation\winobjex64"
+Name: "{app}\sendto+\sendto\System Information\WinObjEx64"; Filename: "{app}\systeminformation\winobjex64\WinObjEx64.exe"; WorkingDir: "{app}\systeminformation\winobjex64"; Components: "systeminformation\winobjex64"

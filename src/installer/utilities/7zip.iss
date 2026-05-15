@@ -1,4 +1,4 @@
-; v24.09
+; v26.00
 ; https://www.7-zip.org
 
 ; We don't extract the main executable form the original installer because 7-Zip installs many a few libraries
@@ -11,8 +11,8 @@ Name: "utilities\7zip"; Description: "7-Zip"; Types: full;
 Source: "{#MySrcDir}\utilities\7zip\*.exe"; DestDir: "{app}\utilities\7zip"; Components: "utilities\7zip"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Run]
-Filename: "{app}\utilities\7zip\7z2409-x64.exe"; Parameters: "/S /D={app}\utilities\7zip"; Components: "utilities\7zip"; Check: Is64BitInstallMode
-Filename: "{app}\utilities\7zip\7z2409.exe"; Parameters: "/S /D={app}\utilities\7zip"; Components: "utilities\7zip";  Check: not Is64BitInstallMode
+Filename: "{app}\utilities\7zip\7z2600-x64.exe"; Parameters: "/S /D={app}\utilities\7zip"; Components: "utilities\7zip"; Check: Is64BitInstallMode
+Filename: "{app}\utilities\7zip\7z2600.exe"; Parameters: "/S /D={app}\utilities\7zip"; Components: "utilities\7zip";  Check: not Is64BitInstallMode
 
 [Icons]
 Name: "{app}\sendto+\sendto\Utilities\7-Zip"; Filename: "{app}\utilities\7zip\7zFM.exe"; WorkingDir: "{app}\utilities\7zip"; Components: "utilities\7zip"

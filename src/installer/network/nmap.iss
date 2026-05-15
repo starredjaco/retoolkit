@@ -1,18 +1,17 @@
-; v7.95
+; v7.99
 ; https://nmap.org/
 
 [Components]
 Name: "network\nmap"; Description: "Nmap (plus Zenmap, Ndiff, Ncat, and Nping)"; Types: full;
 
 [Files]
+Source: "{#MySrcDir}\network\npcap\npcap-1.87.exe"; DestDir: "{app}\network\npcap"; Components: "network\nmap"; Check: not NpcapInstalled
 Source: "{#MySrcDir}\network\nmap\*.exe"; DestDir: "{app}\network\nmap"; Components: "network\nmap"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-; nmap needs npcap, which doesn't support silent install mode, hence we prompt the user to interactively install it first
 [Run]
-Filename: "{app}\network\nmap\npcap-1.81.exe"; Components: "network\nmap"
-Filename: "{app}\network\nmap\nmap-7.95-setup.exe"; Parameters: "/S /D={app}\network\nmap"; Components: "network\nmap"
+Filename: "{app}\network\npcap\npcap-1.87.exe"; Check: not NpcapInstalled; Components: "network\nmap"; Flags: waituntilterminated
+Filename: "{app}\network\nmap\nmap-7.99-setup.exe"; Parameters: "/S /D={app}\network\nmap"; Components: "network\nmap"
 
-; create a Zenmap shortcut under Network folder
 [Icons]
 Name: "{app}\sendto+\sendto\Network\Nmap - Zenmap GUI"; Filename: "{app}\network\nmap\zenmap\bin\pythonw.exe"; Parameters: "-c ""from zenmapGUI.App import run;run()"""; WorkingDir: "{app}\network\nmap"; IconFilename: "{app}\network\nmap\nmap.exe"; Components: "network\nmap"
 

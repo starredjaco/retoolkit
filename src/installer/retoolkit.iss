@@ -1,8 +1,8 @@
 #define MyAppName "retoolkit"
-#define MyAppVersion "2025.04"
+#define MyAppVersion "2026.04"
 #define MyAppPublisher "Mente Binária"
 #define MyAppURL "https://github.com/mentebinaria/retoolkit"
-#define MySrcDir "d:\ret\"
+#define MySrcDir "c:\ret\"
 
 [Setup]
 AppId={{BB46345D-F5E9-408E-AA39-64A5EDD92E30}
@@ -81,10 +81,12 @@ Name: "go"; Description: "Go Tools"; Types: full;
 
 [Components]
 Name: "hexeditors"; Description: "Hex Editors"; Types: full;
+#include "hexeditors\dz6.iss"
 #include "hexeditors\fhex.iss"
 #include "hexeditors\hxd.iss"
 #include "hexeditors\imhex.iss"
 #include "hexeditors\rehex.iss"
+
 
 [Components]
 Name: "java"; Description: "Java"; Types: full;
@@ -99,11 +101,12 @@ Name: "ole"; Description: "OLE/Compound File Binary File analysis (.msi, .doc, e
 #include "ole\oledump.iss"
 #include "ole\ssview.iss"
 
-[Components]
-Name: "network"; Description: "Network"; Types: full;
+ [Components]
+ Name: "network"; Description: "Network"; Types: full;
 #include "network\fakenet.iss"
 #include "network\echomirage.iss"
-#include "network\nmap.iss"
+ #include "network\nmap.iss"
+ #include "network\wireshark.iss"
 
 [Components]
 Name: "pdf"; Description: "PDF Tools"; Types: full;
@@ -122,6 +125,7 @@ Name: "pe"; Description: "PE Tools"; Types: full;
 #include "pe\peanatomist.iss"
 #include "pe\pebear.iss"
 #include "pe\pestudio.iss"
+#include "pe\ppee.iss"
 #include "pe\readpe.iss"
 #include "pe\reshack.iss"
 #include "pe\stud_pe.iss"
@@ -137,6 +141,7 @@ Name: "processinspection"; Description: "Process Inspection"; Types: full;
 #include "processinspection\observer.iss"
 #include "processinspection\systeminformer.iss"
 #include "processinspection\xntsv.iss"
+#include "processinspection\sysexp.iss"
 
 [Components]
 Name: "programming"; Description: "Programming"; Types: full;
@@ -270,10 +275,8 @@ begin
       if WizardIsComponentSelected('dotnet\de4dot') then EnvAddPath(ExpandConstant('{app}') + '\dotnet\de4dot');
       if WizardIsComponentSelected('ole\lessmsi') then EnvAddPath(ExpandConstant('{app}') + '\ole\lessmsi');
       if WizardIsComponentSelected('ole\officemalscanner') then EnvAddPath(ExpandConstant('{app}') + '\ole\officemalscanner');
-      if WizardIsComponentSelected('processinspection\hollowshunter') then EnvAddPath(ExpandConstant('{app}') + '\processinspection\hollowshunter');
       if WizardIsComponentSelected('processinspection\observer') then EnvAddPath(ExpandConstant('{app}') + '\processinspection\observer');
-      if WizardIsComponentSelected('processinspection\pesieve') then EnvAddPath(ExpandConstant('{app}') + '\processinspection\pesieve');
-      if WizardIsComponentSelected('programming\winpython') then EnvAddPath(ExpandConstant('{app}') + '\programming\winpython\python-3.11.3.amd64');
+      if WizardIsComponentSelected('programming\winpython') then EnvAddPath(ExpandConstant('{app}') + '\programming\winpython\python');
       if WizardIsComponentSelected('utilities\winapiexec') then EnvAddPath(ExpandConstant('{app}') + '\utilities\winapiexec');
     end
 end;
@@ -289,10 +292,18 @@ begin
       EnvRemovePath(ExpandConstant('{app}') + '\dotnet\de4dot');
       EnvRemovePath(ExpandConstant('{app}') + '\ole\lessmsi');
       EnvRemovePath(ExpandConstant('{app}') + '\ole\officemalscanner');
-      EnvRemovePath(ExpandConstant('{app}') + '\processinspection\hollowshunter');
       EnvRemovePath(ExpandConstant('{app}') + '\processinspection\observer');
-      EnvRemovePath(ExpandConstant('{app}') + '\processinspection\pesieve');
-      EnvRemovePath(ExpandConstant('{app}') + '\programming\winpython\python-3.11.3.amd64');
+      EnvRemovePath(ExpandConstant('{app}') + '\programming\winpython\python');
       EnvRemovePath(ExpandConstant('{app}') + '\utilities\winapiexec');
     end
+end;
+
+function NpcapInstalled: Boolean;
+begin
+  Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\WOW6432Node\Npcap') or
+    RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\Npcap') or
+    RegKeyExists(HKEY_LOCAL_MACHINE_64, 'SOFTWARE\Npcap') or
+    RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\NpcapInst') or
+    RegKeyExists(HKEY_LOCAL_MACHINE, 'SYSTEM\ControlSet001\Services\npcap\') or
+    RegKeyExists(HKEY_LOCAL_MACHINE_64, 'SYSTEM\ControlSet001\Services\npcap\');
 end;
