@@ -1,7 +1,6 @@
 ; v0.7.0
 ; https://github.com/mentebinaria/dz6
 
-
 [Components]
 Name: "hexeditors\dz6"; Description: "dz6"; Types: full;
 

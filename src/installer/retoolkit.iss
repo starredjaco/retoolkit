@@ -2,7 +2,7 @@
 #define MyAppVersion "2026.04"
 #define MyAppPublisher "Mente Binária"
 #define MyAppURL "https://github.com/mentebinaria/retoolkit"
-#define MySrcDir "c:\ret\"
+#define MySrcDir "Z:\d\ret"
 
 [Setup]
 AppId={{BB46345D-F5E9-408E-AA39-64A5EDD92E30}
@@ -101,12 +101,13 @@ Name: "ole"; Description: "OLE/Compound File Binary File analysis (.msi, .doc, e
 #include "ole\oledump.iss"
 #include "ole\ssview.iss"
 
- [Components]
- Name: "network"; Description: "Network"; Types: full;
+[Components]
+Name: "network"; Description: "Network"; Types: full;
 #include "network\fakenet.iss"
+#include "network\firefox.iss"
 #include "network\echomirage.iss"
- #include "network\nmap.iss"
- #include "network\wireshark.iss"
+#include "network\nmap.iss"
+#include "network\wireshark.iss"
 
 [Components]
 Name: "pdf"; Description: "PDF Tools"; Types: full;
@@ -216,7 +217,6 @@ Type: files; Name: "{localappdata}\Microsoft\WindowsApps\python.exe"; Tasks: mss
 Type: files; Name: "{localappdata}\Microsoft\WindowsApps\python3*.exe"; Tasks: msstorepython
 
 [Tasks]
-Name: "addtopath"; Description: "Add programs to PATH (requires logging in again)";
 Name: "cmddesktop"; Description: "Create a cmd.exe shortcut on desktop";
 Name: "msstorepython"; Description: "Delete useless python.exe from Microsoft Store";
 Name: "wub"; Description: "Disable Windows Update to reduce the noise in network captures (side effect: MS Store won't work until you re-enable it)";

@@ -3,7 +3,8 @@
 ## 2026.04
 
 * Added: 
-   * DZ6.
+   * dz6 hex editor.
+   * Firefox.
    * Frida. \[[#97](https://github.com/mentebinaria/retoolkit/issues/97)\]
    * PPEE (Puppy). \[[#92](https://github.com/mentebinaria/retoolkit/issues/92)\]
    * Wireshark. \[[#88](https://github.com/mentebinaria/retoolkit/issues/88)\]
